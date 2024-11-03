@@ -52,12 +52,24 @@ DropdownButton<String>(
 - প্রোজেক্টের জন্য একটি হোম পেজ ডিজাইন করেছি, যেখানে আইকন ,  স্লাইডার এবং টেক্সট যুক্ত করেছি।  
 
 **Screenshot:**  
-<img src="assets/4.jpg" alt="Day 1 Work" width="200px">
+<img src="assets/4.jpg" alt="Day 2 Work" width="200px">
 
 **Update**
 The home page is now fully set up with icons and text, and the BMI app updates are complete!
 
-<img src="assets/5.jpg" alt="Day 1 Work" width="200px">
+<img src="assets/5.jpg" alt="Day 2 Work" width="200px">
+
+---
+
+ ### Day 3: [03 Nov 2023]
+**Today's Learning:**  
+- আজকের দিনের ফোকাস ছিল আমাক আগে থেকেই থাকা আবহাওয়া অ্যাপ টিকে আরো মডিফাই করা যেখানে নতুন ফিচার যুক্ত করা হয়েছে । এখন থেকে লোকেশন বাটনে ক্লিক করলে কারেন্ট লোকেশন অনুযায়ী আবহাওয়া দেখাবে ।
+
+**Project/Code Update:**  
+- REST আপি নিয়ে কাজ করেছি , লোকেশন নিয়ে কাজ করেছি , লোকেশন এর মান থেকে শহর খুজে বের করেছি । 
+
+**Screenshot:**  
+<img src="assets/6.jpg" alt="Day 3 Work" width="200px">
 <!--
 ---
 
