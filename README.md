@@ -49,11 +49,15 @@ DropdownButton<String>(
 - আজকের দিনের ফোকাস ছিল UI ডিজাইন এবং Flutter দিয়ে নতুন একটি স্ক্রিন তৈরির উপরে।  আমরা গতকাল ও একটি বিএমআই অ্যাপ করেছিলাম কিন্তু সেখানে ব্যাবহারকারি চাইলে নিজ ইচ্ছা মত ইনপুট দিতে পারতো । আজকে সেটিকে আর উন্নত করা হয়েছে । 
 
 **Project/Code Update:**  
-- প্রোজেক্টের জন্য একটি হোম পেজ ডিজাইন করেছি, যেখানে আইকন এবং টেক্সট যুক্ত করেছি।  
+- প্রোজেক্টের জন্য একটি হোম পেজ ডিজাইন করেছি, যেখানে আইকন ,  স্লাইডার এবং টেক্সট যুক্ত করেছি।  
 
 **Screenshot:**  
 <img src="assets/4.jpg" alt="Day 1 Work" width="200px">
 
+**Update**
+The home page is now fully set up with icons and text, and the BMI app updates are complete!
+
+<img src="assets/5.jpg" alt="Day 1 Work" width="200px">
 <!--
 ---
 

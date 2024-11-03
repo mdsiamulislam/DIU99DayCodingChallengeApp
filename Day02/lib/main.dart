@@ -1,7 +1,9 @@
+import 'package:bmiapp/result_page.dart';
 import 'package:flutter/material.dart';
-enum SetClick{
-  incresed,
-  decriesd,
+
+enum SetClick {
+  increased,
+  decreased,
   none
 }
 
@@ -12,28 +14,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'BMI Calculator',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFF090D22),
         appBarTheme: AppBarTheme(
           backgroundColor: Color(0xFF090D22),
           foregroundColor: Colors.white,
-        )
+        ),
       ),
-      home: const MyHomePage(title: 'MBI Calculator'),
+      home: const MyHomePage(title: 'BMI Calculator'),
     );
   }
 }
 
-
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
 
   @override
@@ -41,30 +39,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int height = 120, weight = 70, age = 25;
 
-
-  int height = 120,weight = 70, ages=25;
-
-  void weightChange(SetClick setClick , SetClick age){
+  void weightChange(SetClick weightChange, SetClick ageChange) {
     setState(() {
-      if((setClick == SetClick.incresed) && (age == SetClick.none)){
-        if(weight>0 && weight < 200){
-          weight++;
-        }
-      }else if((setClick == SetClick.decriesd) && (age == SetClick.none)){
-        if(weight>0 && weight < 200){
-          weight--;
-        }
-      }else if((setClick == SetClick.none) && (age == SetClick.incresed)){
-        if(ages>0 && ages<120){
-          ages++;
-        }
-      }else if((setClick == SetClick.none) && (age == SetClick.decriesd)){
-        if(ages>0 && ages<120){
-          ages--;
-        }
+      if (weightChange == SetClick.increased && weight < 200) {
+        weight++;
+      } else if (weightChange == SetClick.decreased && weight > 0) {
+        weight--;
+      } else if (ageChange == SetClick.increased && age < 120) {
+        age++;
+      } else if (ageChange == SetClick.decreased && age > 0) {
+        age--;
       }
     });
+  }
+
+  double calculateBMI() {
+    return weight / ((height / 100) * (height / 100));
   }
 
   @override
@@ -72,209 +64,190 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
-
-        leading: Icon(Icons.menu),
       ),
-      body: Padding(padding: EdgeInsets.all(16),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: GenderCard(icon: Icons.male, label: "Male"),
+                ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: GenderCard(icon: Icons.female, label: "Female"),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            HeightCard(height: height, onChanged: (newHeight) {
+              setState(() {
+                height = newHeight;
+              });
+            }),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: InputCard(
+                    title: "Weight",
+                    value: weight,
+                    onIncrease: () => weightChange(SetClick.increased, SetClick.none),
+                    onDecrease: () => weightChange(SetClick.decreased, SetClick.none),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: InputCard(
+                    title: "Age",
+                    value: age,
+                    onIncrease: () => weightChange(SetClick.none, SetClick.increased),
+                    onDecrease: () => weightChange(SetClick.none, SetClick.decreased),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                      bmi: calculateBMI(),
+                      age: age,
+                      weight: weight,
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                child: Center(child: Text("Calculate Your BMI")),
+                padding: EdgeInsets.symmetric(vertical: 20),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class GenderCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const GenderCard({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                child: Column(
-                  children: [
-                    Icon(Icons.male),
-                    Text("Male"),
-                  ],
-                ),
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-              ),),
-              SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Icon(Icons.female),
-                      Text("Female"),
-                    ],
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                ),),
-
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("HEIGH"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: [
-                    Text("$height",style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold
-                    ),),
-                    Text("cm"),
-
-              ],
-            ),
-    Slider(value: height.toDouble(), onChanged: (double newHeight){
-    setState(() {
-    height = newHeight.floor();
-    });
-    },max: 220.0,
-    min: 100.0,)
-    ],
-    ),
-            padding: EdgeInsets.symmetric(vertical: 20),
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(20)
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-
-              Expanded(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Text("Weight"),
-                  Text("$weight",style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold
-                  ),),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: (){
-                              weightChange(SetClick.incresed, SetClick.none);
-                            },
-                            child: Center(
-                              child: CircleAvatar(
-                                child: Icon(Icons.add),
-                                backgroundColor: Colors.red.shade700,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(onTap: (){
-                            weightChange(SetClick.decriesd, SetClick.none);
-                          },
-                            child: Center(
-                              child: CircleAvatar(
-                                child: Icon(Icons.remove),
-                                backgroundColor: Colors.red.shade700,
-                              ),
-                            ),
-                          )
-
-                        ],
-                      )
-                    ],
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                ),),
-              SizedBox(
-                width: 10,
-              ),
-
-              Expanded(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Text("Age"),
-                      Text("$ages",style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold
-                      ),),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: (){
-                              weightChange(SetClick.none, SetClick.incresed);
-                            },
-                            child: Center(
-                              child: CircleAvatar(
-                                child: Icon(Icons.add),
-                                backgroundColor: Colors.red.shade700,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(onTap: (){
-                            weightChange(SetClick.none, SetClick.decriesd);
-                          },
-                            child: Center(
-                              child: CircleAvatar(
-                                child: Icon(Icons.remove),
-                                backgroundColor: Colors.red.shade700,
-                              ),
-                            ),
-                          )
-
-                        ],
-                      )
-                    ],
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                ),),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Calculate Your BMI"),
-              ],
-            ),
-            padding: EdgeInsets.symmetric(vertical: 20),
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(20)
-            ),
-          ),
-
+          Icon(icon, size: 80),
+          SizedBox(height: 10),
+          Text(label),
         ],
-      ),)
+      ),
+      padding: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+  }
+}
+
+class HeightCard extends StatelessWidget {
+  final int height;
+  final ValueChanged<int> onChanged;
+
+  const HeightCard({required this.height, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("HEIGHT", style: TextStyle(fontSize: 20)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text("$height", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+              Text("cm"),
+            ],
+          ),
+          Slider(
+            value: height.toDouble(),
+            onChanged: (double newHeight) {
+              onChanged(newHeight.floor());
+            },
+            max: 220.0,
+            min: 100.0,
+          ),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(vertical: 20),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+  }
+}
+
+class InputCard extends StatelessWidget {
+  final String title;
+  final int value;
+  final VoidCallback onIncrease;
+  final VoidCallback onDecrease;
+
+  const InputCard({required this.title, required this.value, required this.onIncrease, required this.onDecrease});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(title),
+          Text("$value", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              GestureDetector(
+                onTap: onIncrease,
+                child: CircleAvatar(
+                  child: Icon(Icons.add),
+                  backgroundColor: Colors.red.shade700,
+                ),
+              ),
+              GestureDetector(
+                onTap: onDecrease,
+                child: CircleAvatar(
+                  child: Icon(Icons.remove),
+                  backgroundColor: Colors.red.shade700,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(20),
+      ),
     );
   }
 }
