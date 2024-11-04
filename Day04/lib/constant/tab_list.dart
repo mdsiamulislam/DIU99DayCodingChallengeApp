@@ -5,5 +5,4 @@ List<Widget> tabList = [
   Tab(text: 'Week'),
   Tab(text: 'Month'),
   Tab(text: 'Year'),
-  Tab(text: 'Light Year'),
 ];
