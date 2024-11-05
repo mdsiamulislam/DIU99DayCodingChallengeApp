@@ -1,4 +1,3 @@
-import 'package:bmiapp/module/pin_post_list.dart';
 import 'package:flutter/material.dart';
 
 class TabStyle extends StatefulWidget {
@@ -17,19 +16,15 @@ class TabStyle extends StatefulWidget {
 }
 
 class _TabStyleState extends State<TabStyle> {
-
   final TextEditingController textEditingController1 = TextEditingController();
   final TextEditingController textEditingController2 = TextEditingController();
 
-
-
-  void addData(){
+  void addData() {
     setState(() {
       widget.dataFrom.add({
-        'taskTitle' : '${textEditingController1.text}',
-        'taskDescription' : '${textEditingController2}',
-        'taskStatus' : false
-
+        'taskTitle': '${textEditingController1.text}',
+        'taskDescription': '${textEditingController2.text}',
+        'taskStatus': false
       });
       textEditingController1.clear();
       textEditingController2.clear();
@@ -38,77 +33,71 @@ class _TabStyleState extends State<TabStyle> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        children: [
-          const SizedBox(height: 30),
-          timeLine(),
-          const SizedBox(height: 50),
-          inputField(textEditingController1),
-          const SizedBox(height: 20),
-          inputField(textEditingController2),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                addData();
-              });
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green, // Sets the button's background color
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Adjusts padding for better layout
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8), // Rounds corners of the button
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            timeLine(),
+            const SizedBox(height: 50),
+            inputField(textEditingController1),
+            const SizedBox(height: 20),
+            inputField(textEditingController2),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  addData();
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                elevation: 4,
               ),
-              elevation: 4, // Adds subtle shadow for depth
-            ),
-            child: Text(
-              "Add Task",
-              style: TextStyle(
-                color: Colors.white, // Sets the text color
-                fontSize: 16, // Adjusts text size if needed
-                fontWeight: FontWeight.bold, // Makes text bold
+              child: Text(
+                "Add Task",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 40),
-          Row(
-            children: [
-              const Icon(Icons.push_pin_outlined),
-              Text("      You Have to do"),
-              SizedBox(
-                height: 10,
-              )
-            ],
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
+            const SizedBox(height: 40),
+            Row(
+              children: [
+                const Icon(Icons.push_pin_outlined),
+                Text("      You Have to do"),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: widget.dataFrom.length,
               itemBuilder: (BuildContext context, int index) {
                 bool isChecked = widget.dataFrom[index]['taskStatus'];
                 return isChecked
-                    ? const SizedBox.shrink() // Hide completed tasks
+                    ? const SizedBox.shrink()
                     : pinTask(index);
               },
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            children: [
-              const Icon(Icons.done_all),
-              Text("      You Complete"),
-              SizedBox(
-                height: 10,
-              )
-            ],
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                const Icon(Icons.done_all),
+                Text("      You Complete"),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: widget.dataFrom.length,
               itemBuilder: (BuildContext context, int index) {
                 bool isChecked = widget.dataFrom[index]['taskStatus'];
@@ -117,8 +106,8 @@ class _TabStyleState extends State<TabStyle> {
                     : const SizedBox.shrink();
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -130,35 +119,41 @@ class _TabStyleState extends State<TabStyle> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.dataFrom[index]['taskStatus'] =
-                      !widget.dataFrom[index]['taskStatus'];
-                    });
-                  },
-                  child: Icon(
-                    isChecked ? Icons.check_box : Icons.check_box_outline_blank,
-                    color: Colors.white,
+            Expanded(
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.dataFrom[index]['taskStatus'] =
+                        !widget.dataFrom[index]['taskStatus'];
+                      });
+                    },
+                    child: Icon(
+                      isChecked ? Icons.check_box : Icons.check_box_outline_blank,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.dataFrom[index]['taskTitle'],
-                      style: const TextStyle(fontSize: 20, color: Colors.white),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.dataFrom[index]['taskTitle'],
+                          style: const TextStyle(fontSize: 20, color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          widget.dataFrom[index]['taskDescription'],
+                          style: const TextStyle(color: Colors.white60),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    Text(
-                      widget.dataFrom[index]['taskDescription'],
-                      style: const TextStyle(color: Colors.white60),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
             const Icon(Icons.more_horiz, color: Colors.white),
           ],
@@ -168,9 +163,9 @@ class _TabStyleState extends State<TabStyle> {
     );
   }
 
-  TextField inputField(TextEditingController controler) {
+  TextField inputField(TextEditingController controller) {
     return TextField(
-      controller: controler,
+      controller: controller,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.subject, color: Colors.grey),
         hintText: 'Add A Task..',
