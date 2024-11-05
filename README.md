@@ -83,6 +83,21 @@ The home page is now fully set up with icons and text, and the BMI app updates a
 **Screenshot:**  
 <img src="assets/7.jpg" alt="Day 4 Work" width="200px">
 <img src="assets/8.jpg" alt="Day 4 Work" width="200px">
+
+
+ ### Day 5: [05 Nov 2023]
+**Today's Learning:**  
+- আজকের দিনের ফোকাস ছিল একটি টু-ডু অ্যাপ এর ইন্টারফেস এর বাঘ ভাল্লুক ঠিক করা  ***আমার শিখতে হবে কিভাবে ডিভাইস এ ডেটা সেভ রাখা জায় ।***
+
+**Project/Code Update:**  
+- আজকে সিঙ্গেল চাইল স্ক্রল ভিঊ নিয়ে কাজ করেছি , এবং রো অভারফ্ল ঠিক করছি
+
+``` 
+আজকের বিশেষ কোন কোড না থাকায় ৪ তারিখের ফাইল এ রাখা হয়েছে 
+```
+
+
+
 <!--
 ---
 
