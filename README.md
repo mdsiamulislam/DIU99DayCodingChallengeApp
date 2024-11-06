@@ -89,6 +89,8 @@ The home page is now fully set up with icons and text, and the BMI app updates a
 **Today's Learning:**  
 - আজকের দিনের ফোকাস ছিল একটি টু-ডু অ্যাপ এর ইন্টারফেস এর বাঘ ভাল্লুক ঠিক করা  ***আমার শিখতে হবে কিভাবে ডিভাইস এ ডেটা সেভ রাখা জায় ।***
 
+
+
 **Project/Code Update:**  
 - আজকে সিঙ্গেল চাইল স্ক্রল ভিঊ নিয়ে কাজ করেছি , এবং রো অভারফ্ল ঠিক করছি
 
@@ -96,6 +98,15 @@ The home page is now fully set up with icons and text, and the BMI app updates a
 আজকের বিশেষ কোন কোড না থাকায় ৪ তারিখের ফাইল এ রাখা হয়েছে 
 ```
 
+ ### Day 6: [06 Nov 2023]
+**Today's Learning:**  
+- আজকের দিনের ফোকাস কিভাবে ডিভাইস এ ডেটা সেভ রাখা জায় ।
+
+**Project/Code Update:**  
+- এখানে আমি শেয়ারড প্রেফারেন্স নিয়ে কাজ করেছি । 
+
+**Screenshot:**  
+<img src="assets/9.jpg" alt="Day 4 Work" width="200px">
 
 
 <!--
