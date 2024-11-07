@@ -108,6 +108,16 @@ The home page is now fully set up with icons and text, and the BMI app updates a
 **Screenshot:**  
 <img src="assets/9.jpg" alt="Day 4 Work" width="200px">
 
+ ### Day 7: [07 Nov 2023]
+**Today's Learning:**  
+- আজকের দিনের ফোকাস কিভাবে ডিভাইস এ ডেটা সেভ রাখা জায় । এবং সেটি ব্যাবহার করে ইউজার এক্সেরিয়েন্স বৃদ্ধি করা যায় । 
+
+**Project/Code Update:**  
+- এখানে আমি শেয়ারড প্রেফারেন্স নিয়ে কাজ করেছি । কিছুটা অথেনটিকেশন এর মতন কাজ করবে 
+
+**Screenshot:**  
+<img src="assets/10.jpg" alt="Day 4 Work" width="200px">
+
 
 <!--
 ---
