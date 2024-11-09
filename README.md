@@ -139,6 +139,22 @@ DropdownButton<String>(
 
 </details>
 
+</details>
+
+<details>
+<summary>### Day 9: [09 Nov 2024]</summary>
+
+**Today's Learning:**  
+- আজকের দিনের ফোকাস ছিল সম্পূর্ণ একটি টুডু অ্যাপ তৈরি করা । 
+
+**Project/Code Update:**  
+- Shared Preferences দিয়ে অ্যাড করা, ডিলেট করা, ইত্যাদি কাজ করেছি।  
+
+**Screenshot:**  
+![Day 8 Work](assets/12.jpg)
+
+</details>
+
 ---
 
 ## 🏆 Weekly Summary  
