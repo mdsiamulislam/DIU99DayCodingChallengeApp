@@ -92,7 +92,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () {
-
+                    if (_formKey.currentState!.validate()) {
+                      FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      ).then((value) {
+                        Navigator.pushNamed(context, ChatPage.id);
+                      }).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(error.toString()),
+                          ),
+                        );
+                      });
+                    }
                   },
                   child: const Text('Login'),
                 ),
