@@ -1,0 +1,104 @@
+Introduction to SQLite
+SQLite is a lightweight, serverless, self-contained SQL database engine commonly embedded in mobile applications, desktop software, and small-scale systems. It is widely used due to its simplicity, reliability, and portability.
+
+Key Features of SQLite
+Serverless: SQLite does not require a separate server process; it reads and writes directly to ordinary disk files.
+Zero Configuration: No setup or administration is required.
+Cross-Platform: Works on various platforms, including Windows, macOS, Linux, Android, and iOS.
+Lightweight: Small footprint in terms of both size and resource consumption.
+Self-Contained: Everything is in a single library file.
+How SQLite Works
+SQLite stores its entire database in a single cross-platform file. Here's a step-by-step overview of its functionality:
+
+1. Database Creation
+SQLite database is created as a single .sqlite or .db file using a command or programmatically.
+Command:
+
+sql
+Copy code
+sqlite3 mydatabase.db
+This creates a new SQLite database named mydatabase.db.
+
+2. Table Creation
+Tables are used to organize data in rows and columns.
+
+SQL Example:
+
+sql
+Copy code
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL
+);
+3. Data Insertion
+Data is added to the database using INSERT statements.
+
+SQL Example:
+
+sql
+Copy code
+INSERT INTO users (name, email)
+VALUES ('John Doe', 'john@example.com');
+4. Data Querying
+Data is retrieved using SELECT statements.
+
+SQL Example:
+
+sql
+Copy code
+SELECT * FROM users WHERE name = 'John Doe';
+5. Data Modification
+Update or delete records using UPDATE and DELETE commands.
+
+SQL Example:
+
+sql
+Copy code
+UPDATE users
+SET email = 'john.doe@example.com'
+WHERE id = 1;
+
+DELETE FROM users
+WHERE id = 1;
+6. Transactions
+SQLite supports transactions to ensure data integrity.
+
+SQL Example:
+
+sql
+Copy code
+BEGIN TRANSACTION;
+
+INSERT INTO users (name, email)
+VALUES ('Jane Doe', 'jane@example.com');
+
+COMMIT;
+7. Closing the Database
+When a database operation is complete, the connection can be closed (in programming).
+
+Common SQLite Commands
+List all tables:
+sql
+Copy code
+.tables
+View table schema:
+sql
+Copy code
+.schema table_name
+Exit SQLite shell:
+sql
+Copy code
+.exit
+Advantages of SQLite
+Simplicity: Easy to set up and use.
+Portability: The database file can be copied and used across systems.
+Performance: Optimized for read-heavy operations.
+Limitations
+Not suitable for high-concurrency, large-scale applications.
+No user management or access control.
+Practical Applications of SQLite
+Mobile applications (e.g., Android, iOS).
+Browsers (e.g., Chrome, Firefox).
+Embedded systems.
+Local application data storage.
